@@ -20,5 +20,5 @@ RUN pip install -r requirements.txt
 
 COPY ./src .
 
-# Expose port 8080 to the outside world
-EXPOSE 8080
+# Expose port 8000 to the outside world
+EXPOSE 8000

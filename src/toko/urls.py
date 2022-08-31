@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
+    path('__debug__/', include('debug_toolbar.urls')),
     path('todo/', include('todo.urls')),
     path('api/v1/product/', include('product.urls')),
     path('api/v1/order/', include('order.urls')),

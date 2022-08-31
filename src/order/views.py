@@ -1,11 +1,16 @@
+import logging
+
 from midtransclient import Snap
 from rest_framework import generics, permissions
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from django.conf import settings
 
 from order.models import Order
 from order.serializers import OrderSerializer
+
+logger = logging.getLogger('django')
 
 # Create your views here.
 class Checkout(generics.CreateAPIView):
@@ -48,3 +53,8 @@ class OrderList(generics.ListAPIView):
     def get_queryset(self):
         user = self.request.user
         return Order.objects.filter(user=user)
+
+class MidtransNotification(APIView):
+    def post(self, request, format=None):
+        logger.info('Midtrans notification %s', request.data)
+        return Response({'success': True})

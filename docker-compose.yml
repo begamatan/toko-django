@@ -1,0 +1,22 @@
+version: '3'
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - mysql
+    volumes:
+      - ./src:/usr/src/app
+    ports:
+      - "8000:8000" # Forward the exposed port 8080 on the container to port 8080 on the host machine
+    restart: always
+
+  mysql:
+    image: mysql:latest
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: todos
+    ports:
+      - "3308:3306"

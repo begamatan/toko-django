@@ -44,7 +44,7 @@ class Checkout(generics.CreateAPIView):
                 'order': response.data,
                 'url': midtrans['redirect_url'],
             }
-        })
+        }, status=response.status_code)
 
 class OrderList(generics.ListAPIView):
     serializer_class = OrderSerializer

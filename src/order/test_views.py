@@ -52,3 +52,8 @@ class OrderViewTests(APITestCase):
         
         self.assertEqual(response.status_code, 201)
         self.assertEqual(response.data['data']['url'], 'url')
+
+    def test_checkout_unauthorized_for_guest(self):
+        response = self.client.post(reverse('order:checkout'), data={}, format='json')
+
+        self.assertEqual(response.status_code, 401)

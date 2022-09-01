@@ -3,3 +3,4 @@ mysql/*
 db.sqlite3
 src/.env
 src/logs/app.log
+src/.coverage

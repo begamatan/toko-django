@@ -61,4 +61,7 @@ class MidtransNotification(APIView):
         order.status = request.data['transaction_status']
         order.payment_notification = request.data
         order.save()
+
+        # after order saved see signals for order
+
         return Response({'success': True})

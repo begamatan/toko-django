@@ -9,6 +9,7 @@ class Order(models.Model):
     status = models.CharField(default='menunggu_pembayaran', max_length=100)
     total = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
+    payment_notification = models.JSONField(null=True, blank=True)
 
     class Meta:
         ordering = ['-created_at']

@@ -57,4 +57,8 @@ class OrderList(generics.ListAPIView):
 class MidtransNotification(APIView):
     def post(self, request, format=None):
         logger.info('Midtrans notification %s', request.data)
+        order = Order.objects.get(id=request.data['order_id'])
+        order.status = request.data['transaction_status']
+        order.payment_notification = request.data
+        order.save()
         return Response({'success': True})
